@@ -1,0 +1,23 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.0-rc-146'
+}
+
+group 'de.d3ns0n'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.30.1-eap13'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
