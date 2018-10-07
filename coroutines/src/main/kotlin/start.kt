@@ -5,25 +5,25 @@ import kotlinx.coroutines.runBlocking
 private const val times = 10
 
 fun main(args: Array<String>) {
-    //runWithCoroutines()
-    runWithoutCoroutines()
+    //runWithCoroutines(::expensiveOperation)
+    runWithoutCoroutines(::expensiveOperation)
 }
 
-private fun runWithCoroutines() {
+private fun runWithCoroutines(block: suspend (Int) -> Unit) {
     runBlocking {
         repeat(times) {
             // launch a lot of coroutines
             launch {
-                expensiveOperation(it)
+                block(it)
             }
         }
     }
 }
 
-private fun runWithoutCoroutines() {
+private fun runWithoutCoroutines(block: suspend (Int) -> Unit) {
     runBlocking {
         repeat(times) {
-            expensiveOperation(it)
+            block(it)
         }
     }
 }
